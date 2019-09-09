@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AccountsSectionHeader" customModule="UITableViewPresentation_Example" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="83"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eyo-pL-9fl">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="83"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1f-sT-RLB">
+                            <rect key="frame" x="103" y="31.5" width="43.5" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SectionImage" translatesAutoresizingMaskIntoConstraints="NO" id="UWL-3d-OU6">
+                            <rect key="frame" x="20" y="5" width="73" height="73"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="73" id="5nC-rv-6Zd"/>
+                            </constraints>
+                        </imageView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6d0-kk-qpQ">
+                            <rect key="frame" x="0.0" y="82" width="375" height="1"/>
+                            <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="DUR-pV-V4L"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="6d0-kk-qpQ" secondAttribute="bottom" id="5Mw-90-n0r"/>
+                        <constraint firstItem="UWL-3d-OU6" firstAttribute="top" secondItem="eyo-pL-9fl" secondAttribute="top" constant="5" id="Jvg-mg-ct2"/>
+                        <constraint firstItem="6d0-kk-qpQ" firstAttribute="leading" secondItem="eyo-pL-9fl" secondAttribute="leading" id="O0S-4v-Smh"/>
+                        <constraint firstItem="UWL-3d-OU6" firstAttribute="leading" secondItem="eyo-pL-9fl" secondAttribute="leading" constant="20" id="ZDd-6V-nUu"/>
+                        <constraint firstItem="e1f-sT-RLB" firstAttribute="leading" secondItem="UWL-3d-OU6" secondAttribute="trailing" constant="10" id="b0s-1e-uH2"/>
+                        <constraint firstItem="e1f-sT-RLB" firstAttribute="centerY" secondItem="eyo-pL-9fl" secondAttribute="centerY" id="cTi-Dx-iEg"/>
+                        <constraint firstAttribute="bottom" secondItem="UWL-3d-OU6" secondAttribute="bottom" constant="5" id="elx-OD-hwk"/>
+                        <constraint firstAttribute="trailing" secondItem="6d0-kk-qpQ" secondAttribute="trailing" id="im8-EF-c5A"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="eyo-pL-9fl" secondAttribute="trailing" id="bJT-8B-bXy"/>
+                <constraint firstItem="eyo-pL-9fl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="grh-sf-zaT"/>
+                <constraint firstAttribute="bottom" secondItem="eyo-pL-9fl" secondAttribute="bottom" id="nzO-C4-zQL"/>
+                <constraint firstItem="eyo-pL-9fl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qHg-FA-S1M"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="titleLabel" destination="e1f-sT-RLB" id="zgS-aH-dlJ"/>
+            </connections>
+            <point key="canvasLocation" x="-6.5" y="-222.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="SectionImage" width="250" height="101"/>
+    </resources>
+</document>

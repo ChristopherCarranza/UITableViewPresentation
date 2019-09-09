@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'UITableViewPresentation_Example' do
+  pod 'UITableViewPresentation', :path => '../'
+
+  target 'UITableViewPresentation_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
