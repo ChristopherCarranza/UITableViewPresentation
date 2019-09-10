@@ -61,21 +61,25 @@ public final class UITableViewPresentableDataSource: NSObject {
     /// - Parameters:
     ///   - model: a `UITableViewModel` object
     ///   - animated: If `true` model changes are animated.
-    public func setTableViewModel(to newModel: UITableViewModel, animated: Bool = false) {
-        guard newModel != _tableViewModel else { return }
+    public func setTableViewModel(to newModel: UITableViewModel, animated: Bool = false, completion: (() -> Void)? = nil) {
+        guard newModel != _tableViewModel else {
+            completion?()
+            return
+        }
         
         tableViewRegistrar.register(tableViewModel: newModel)
         
         guard animated else {
             _tableViewModel = newModel
             tableView.reloadData()
+            completion?()
             return
         }
         
         let oldModel = _tableViewModel
         let diff = Dwifft.diff(lhs: oldModel, rhs: newModel)
         if !diff.isEmpty {
-            processChanges(newState: newModel, diff: diff)
+            processChanges(newState: newModel, diff: diff, completion: completion)
         }
     }
     
@@ -84,8 +88,14 @@ public final class UITableViewPresentableDataSource: NSObject {
     public var insertionAnimation: UITableView.RowAnimation = .automatic,
                 deletionAnimation: UITableView.RowAnimation = .automatic
     
-    fileprivate func processChanges(newState: UITableViewModel, diff: [SectionedDiffStep<Dwifft.UITableViewSectionDiffModel, AnyUITableViewPresentable>]) {
-        guard let tableView = self.tableView else { return }
+    fileprivate func processChanges(newState: UITableViewModel,
+                                    diff: [SectionedDiffStep<Dwifft.UITableViewSectionDiffModel, AnyUITableViewPresentable>],
+                                    completion: (() -> Void)? = nil) {
+        guard let tableView = self.tableView else {
+            completion?()
+            return
+        }
+        
         let performUpdates = {
             for result in diff {
                 switch result {
@@ -99,12 +109,13 @@ public final class UITableViewPresentableDataSource: NSObject {
         
         if #available(iOS 11.0, *) {
             _tableViewModel = newState
-            tableView.performBatchUpdates(performUpdates, completion: nil)
+            tableView.performBatchUpdates(performUpdates, completion: { _ in completion?() })
         } else {
             tableView.beginUpdates()
             _tableViewModel = newState
             performUpdates()
             tableView.endUpdates()
+            completion?()
         }
     }
 }
