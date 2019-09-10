@@ -5,6 +5,8 @@
 [![License](https://img.shields.io/cocoapods/l/UITableViewPresentation.svg?style=flat)](https://cocoapods.org/pods/UITableViewPresentation)
 [![Platform](https://img.shields.io/cocoapods/p/UITableViewPresentation.svg?style=flat)](https://cocoapods.org/pods/UITableViewPresentation)
 
+UITableViewPresentation is an abstraction layer that makes it easy and safe to work with your UITableViews.
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.

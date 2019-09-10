@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   s.version          = '1.0.0'
   s.summary          = 'UITableViewPresentation.'
   s.description      = <<-DESC
-A presentation library for coordinating changes between your models
+A presentation library for coordinating changes between your models and your tableview
                        DESC
   s.homepage         = 'https://github.com/ChristopherCarranza/UITableViewPresentation'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
