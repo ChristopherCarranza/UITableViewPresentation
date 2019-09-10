@@ -1,6 +1,5 @@
 # UITableViewPresentation
 
-[![CI Status](https://img.shields.io/travis/Christopher Carranza/UITableViewPresentation.svg?style=flat)](https://travis-ci.org/Christopher Carranza/UITableViewPresentation)
 [![Version](https://img.shields.io/cocoapods/v/UITableViewPresentation.svg?style=flat)](https://cocoapods.org/pods/UITableViewPresentation)
 [![License](https://img.shields.io/cocoapods/l/UITableViewPresentation.svg?style=flat)](https://cocoapods.org/pods/UITableViewPresentation)
 [![Platform](https://img.shields.io/cocoapods/p/UITableViewPresentation.svg?style=flat)](https://cocoapods.org/pods/UITableViewPresentation)
