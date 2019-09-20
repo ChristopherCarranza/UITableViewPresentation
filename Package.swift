@@ -32,6 +32,9 @@ let package = Package(
     products: [
         .library(name: "UITableViewPresentation", targets: ["UITableViewPresentation"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/jflinter/Dwifft.git", from: "0.9"),
+    ],
     targets: [
         .target(name: "UITableViewPresentation", path: "UITableViewPresentation/Classes"),
     ],
