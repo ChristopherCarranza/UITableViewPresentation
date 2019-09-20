@@ -1,4 +1,4 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.1
 //
 //  UITableViewPresentation
 //
@@ -36,7 +36,7 @@ let package = Package(
         .package(url: "https://github.com/jflinter/Dwifft.git", .revision("6fec2bc0246091b3e17a9d42e722fb98e05ac3ff")),
     ],
     targets: [
-        .target(name: "UITableViewPresentation", path: "UITableViewPresentation/Classes"),
+        .target(name: "UITableViewPresentation", dependencies: ["Dwifft"], path: "UITableViewPresentation/Classes"),
     ],
     swiftLanguageVersions: [
         .v5

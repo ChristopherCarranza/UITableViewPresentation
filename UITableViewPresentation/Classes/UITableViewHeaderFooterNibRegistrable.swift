@@ -6,7 +6,7 @@
 //  Copyright © 2019 Christopher Carranza. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 public protocol UITableViewHeaderFooterNibRegistrable {
     var nib: UINib { get }

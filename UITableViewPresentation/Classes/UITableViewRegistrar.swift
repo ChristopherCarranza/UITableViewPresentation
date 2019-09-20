@@ -6,7 +6,7 @@
 //  Copyright © 2019 Christopher Carranza. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// Used to track which Registrables have been registered to a tableview
 public final class UITableViewRegistrar {

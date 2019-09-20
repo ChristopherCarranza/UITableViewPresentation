@@ -6,7 +6,7 @@
 //  Copyright © 2019 Christopher Carranza. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 public struct ZeroConfigurationPresenter: UITableViewPresentable {
     public let cellReuseIdentifier: String
