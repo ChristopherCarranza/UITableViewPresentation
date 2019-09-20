@@ -33,7 +33,7 @@ let package = Package(
         .library(name: "UITableViewPresentation", targets: ["UITableViewPresentation"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/jflinter/Dwifft.git", from: "0.9.0"),
+        .package(url: "https://github.com/jflinter/Dwifft.git", .revision("a006cd099779f835e1a357247a8de02031195a4e")),
     ],
     targets: [
         .target(name: "UITableViewPresentation", path: "UITableViewPresentation/Classes"),
