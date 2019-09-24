@@ -6,7 +6,7 @@
 //  Copyright © 2019 Christopher Carranza. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// Allows for the registration of a UITableViewCell from a nib
 public protocol UITableViewNibRegistrable {

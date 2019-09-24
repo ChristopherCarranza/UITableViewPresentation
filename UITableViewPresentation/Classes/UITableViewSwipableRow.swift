@@ -6,7 +6,7 @@
 //  Copyright © 2019 Christopher Carranza. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// Objects conforming to the `UITableViewSwipableRow` protocol specify
 /// whether or not they represent an swipable row. They also specify the

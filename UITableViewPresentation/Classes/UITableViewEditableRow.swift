@@ -6,6 +6,8 @@
 //  Copyright © 2019 Christopher Carranza. All rights reserved.
 //
 
+import UIKit
+
 /// Objects conforming to the `UITableViewEditableRow` protocol specify 
 /// whether or not they represent an editable row. They also specify the 
 /// `UITableViewRowAction`s that can be taken when editing the row they 

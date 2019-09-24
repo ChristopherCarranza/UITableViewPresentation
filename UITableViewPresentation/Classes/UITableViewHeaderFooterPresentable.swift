@@ -6,7 +6,7 @@
 //  Copyright © 2019 Christopher Carranza. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// Provides the ability to dequeue and configure a UITableViewHeaderFooterPresentable for a UITableView.
 public protocol UITableViewHeaderFooterPresentable: Equatable {
