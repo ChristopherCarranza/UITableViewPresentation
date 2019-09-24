@@ -17,7 +17,7 @@ final class ViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    fileprivate var dataSource: UITableViewPresentableDataSource?
+    fileprivate var dataSource: UITableViewPresentableDataSource!
     
     private var currentModel: TestModel = .one
     
@@ -26,7 +26,7 @@ final class ViewController: UIViewController {
         
         dataSource = UITableViewPresentableDataSource(tableView: tableView, delegate: self)
 
-        dataSource?.setTableViewModel(to: ModelHelper.testModelOne(delegate: self))
+        dataSource.setTableViewModel(to: ModelHelper.testModelOne(delegate: self), animated: true)
     }
 
     @IBAction func swapModelButtonTapped(_ sender: UIBarButtonItem) {
@@ -39,7 +39,7 @@ final class ViewController: UIViewController {
             model = ModelHelper.testModelOne(delegate: self)
         }
         
-        dataSource?.setTableViewModel(to: model, animated: true)
+        dataSource.setTableViewModel(to: model, animated: true)
     }
 }
 

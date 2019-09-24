@@ -16,17 +16,14 @@ public extension Dwifft {
     /// `Dwifft` looks at the section and rows separately. This separate object is used
     /// only for diffing purposes.
     internal struct UITableViewSectionDiffModel: Equatable {
-        let header: UITableViewSection.HeaderFooter
-        let footer: UITableViewSection.HeaderFooter
+        let id: AnyHashable
         
         init(_ section: UITableViewSection) {
-            header = section.header
-            footer = section.footer
+            id = section.id
         }
         
         internal static func == (lhs: UITableViewSectionDiffModel, rhs: UITableViewSectionDiffModel) -> Bool {
-            if lhs.header != rhs.header { return false }
-            if lhs.footer != rhs.footer { return false }
+            if lhs.id != rhs.id { return false }
             
             return true
         }

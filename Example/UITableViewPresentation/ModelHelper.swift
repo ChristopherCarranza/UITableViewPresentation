@@ -26,8 +26,8 @@ final class ModelHelper {
         ]
         
         return [
-            UITableViewSection(rows: rowsSectionOne, header: .presentable(AnyUITableViewHeaderFooterPresentable(AccountsSectionHeaderPresenter(title: "Video Accounts")))),
-            UITableViewSection(rows: rowsSectionTwo, header: .title("Music Accounts"))
+            UITableViewSection(id: "SectionOne", rows: rowsSectionOne, header: .presentable(AnyUITableViewHeaderFooterPresentable(AccountsSectionHeaderPresenter(title: "Video Accounts")))),
+            UITableViewSection(id: "SectionTwo", rows: rowsSectionTwo, header: .title("Music Accounts"))
         ]
     }
     
@@ -49,9 +49,9 @@ final class ModelHelper {
         ]
         
         return [
-            UITableViewSection(rows: rowsSectionOne, header: .presentable(AnyUITableViewHeaderFooterPresentable(AccountsSectionHeaderPresenter(title: "Video Accounts")))),
-            UITableViewSection(rows: rowsSectionTwo, header: .title("Music Accounts")),
-            UITableViewSection(rows: rowsSectionThree, header: .title("Git Accounts"))
+            UITableViewSection(id: "SectionOne", rows: rowsSectionOne, header: .presentable(AnyUITableViewHeaderFooterPresentable(AccountsSectionHeaderPresenter(title: "Video Accounts")))),
+            UITableViewSection(id: "SectionTwo", rows: rowsSectionTwo, header: .title("Music Accounts")),
+            UITableViewSection(id: "SectionThree", rows: rowsSectionThree, header: .title("Git Accounts"))
         ]
     }
 }

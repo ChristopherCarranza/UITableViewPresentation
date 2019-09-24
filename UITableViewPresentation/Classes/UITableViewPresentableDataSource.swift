@@ -50,7 +50,7 @@ public final class UITableViewPresentableDataSource: NSObject {
         tableView.estimatedSectionHeaderHeight = 44
         tableView.sectionHeaderHeight = UITableView.automaticDimension
         
-        setTableViewModel(to: tableViewModel)
+        setTableViewModel(to: tableViewModel, animated: true)
     }
     
     /// Sets the new model and reloads the table view. If animated a diff occures between the
@@ -97,22 +97,31 @@ public final class UITableViewPresentableDataSource: NSObject {
         }
         
         let performUpdates = {
+            var deleteRows: [IndexPath] = []
+            var insertRows: [IndexPath] = []
+            var deleteSections: IndexSet = []
+            var insertSections: IndexSet = []
+            
             for result in diff {
                 switch result {
-                case let .delete(section, row, _): tableView.deleteRows(at: [IndexPath(row: row, section: section)], with: self.deletionAnimation)
-                case let .insert(section, row, _): tableView.insertRows(at: [IndexPath(row: row, section: section)], with: self.insertionAnimation)
-                case let .sectionDelete(section, _): tableView.deleteSections(IndexSet(integer: section), with: self.deletionAnimation)
-                case let .sectionInsert(section, _): tableView.insertSections(IndexSet(integer: section), with: self.insertionAnimation)
+                case let .delete(section, row, _): deleteRows.append(IndexPath(row: row, section: section))
+                case let .insert(section, row, _): insertRows.append(IndexPath(row: row, section: section))
+                case let .sectionDelete(section, _): deleteSections.insert(section)
+                case let .sectionInsert(section, _): insertSections.insert(section)
                 }
             }
+            
+            tableView.deleteRows(at: deleteRows, with: self.deletionAnimation)
+            tableView.insertRows(at: insertRows, with: self.insertionAnimation)
+            tableView.deleteSections(deleteSections, with: self.deletionAnimation)
+            tableView.insertSections(insertSections, with: self.insertionAnimation)
+            self._tableViewModel = newState
         }
         
         if #available(iOS 11.0, *) {
-            _tableViewModel = newState
             tableView.performBatchUpdates(performUpdates, completion: { _ in completion?() })
         } else {
             tableView.beginUpdates()
-            _tableViewModel = newState
             performUpdates()
             tableView.endUpdates()
             completion?()

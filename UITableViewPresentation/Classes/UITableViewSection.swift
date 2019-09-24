@@ -24,11 +24,13 @@ public struct UITableViewSection {
         case presentable(AnyUITableViewHeaderFooterPresentable)
     }
     
+    public let id: AnyHashable
     public let header: HeaderFooter
     public let footer: HeaderFooter
     public let rows: [AnyUITableViewPresentable]
     
-    public init<P: UITableViewPresentable>(rows: [P], header: HeaderFooter = .none, footer: HeaderFooter = .none) {
+    public init<P: UITableViewPresentable>(id: AnyHashable, rows: [P], header: HeaderFooter = .none, footer: HeaderFooter = .none) {
+        self.id = id
         self.header = header
         self.footer = footer
         
@@ -57,12 +59,6 @@ extension UITableViewSection: RandomAccessCollection {
     }
 }
 
-extension UITableViewSection: ExpressibleByArrayLiteral {
-    public init(arrayLiteral elements: AnyUITableViewPresentable...) {
-        self.init(rows: elements)
-    }
-}
-
 extension UITableViewSection.HeaderFooter: Equatable {
     public static func ==(lhs: UITableViewSection.HeaderFooter, rhs: UITableViewSection.HeaderFooter) -> Bool {
         switch (lhs, rhs) {
@@ -80,6 +76,7 @@ extension UITableViewSection.HeaderFooter: Equatable {
 
 extension UITableViewSection: Equatable {
     public static func == (lhs: UITableViewSection, rhs: UITableViewSection) -> Bool {
+        if lhs.id != rhs.id { return false }
         if lhs.header != rhs.header { return false }
         if lhs.footer != rhs.footer { return false }
         if lhs.rows != rhs.rows { return false }

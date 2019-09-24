@@ -31,7 +31,7 @@ public struct UITableViewModel {
 
 extension UITableViewModel {
     public init<P: UITableViewPresentable>(rows: [P]) {
-        sections = [UITableViewSection(rows: rows)]
+        sections = [UITableViewSection(id: "Default", rows: rows)]
     }
 }
 
