@@ -23,3 +23,5 @@ public struct ZeroConfigurationPresenter: UITableViewPresentable {
         return true
     }
 }
+
+extension ZeroConfigurationPresenter: UITableViewNibRegistrable {}
