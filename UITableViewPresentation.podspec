@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'UITableViewPresentation'
-  s.version          = '1.0.0'
+  s.version          = '1.1.0'
   s.summary          = 'UITableViewPresentation.'
   s.description      = <<-DESC
 A presentation library for coordinating changes between your models and your tableview

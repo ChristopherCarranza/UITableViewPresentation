@@ -60,7 +60,6 @@ public class UITableViewSectionBuilder {
     
     @discardableResult
     public func addRows<P: UITableViewPresentable>(_ rows: [P]) -> UITableViewSectionBuilder {
-        /// Box our rows.
         self.rows.append(contentsOf: UITableViewSectionBuilder.boxRows(rows))
         
         return self
