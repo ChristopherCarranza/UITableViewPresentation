@@ -9,7 +9,7 @@
 import UIKit
 
 /// Provides the ability to dequeue and configure a UITableViewHeaderFooterPresentable for a UITableView.
-public protocol UITableViewHeaderFooterPresentable: Equatable {
+public protocol UITableViewHeaderFooterPresentable: Equatable, UITableViewHeaderFooterNibRegistrable {
     associatedtype HeaderFooterView: UITableViewHeaderFooterView
     
     /// Identifier that should match the views reuseIdentifier property.

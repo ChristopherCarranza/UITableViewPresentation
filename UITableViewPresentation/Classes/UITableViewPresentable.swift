@@ -9,7 +9,7 @@
 import UIKit
 
 /// Provides the ability to dequeue and configure a UITableViewCell for a UITableView.
-public protocol UITableViewPresentable: Equatable {
+public protocol UITableViewPresentable: Equatable, UITableViewNibRegistrable {
     associatedtype TableViewCell: UITableViewCell
     
     /// Identifier that should match the cells cellReuseIdentifier property.

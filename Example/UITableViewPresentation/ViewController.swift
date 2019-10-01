@@ -26,7 +26,7 @@ final class ViewController: UIViewController {
         
         dataSource = UITableViewPresentableDataSource(tableView: tableView, delegate: self)
 
-        dataSource.setTableViewModel(to: ModelHelper.testModelOne(delegate: self), animated: true)
+        dataSource.setTableViewModel(to: ModelHelper.testModelOne(delegate: self), animated: false)
     }
 
     @IBAction func swapModelButtonTapped(_ sender: UIBarButtonItem) {

@@ -10,7 +10,7 @@ import Foundation
 import UITableViewPresentation
 
 final class AccountsSectionHeaderPresenter: UITableViewHeaderFooterPresentable {
-    let viewReuseIdentifier: String = "AccountsSectionHeader"
+
     let title: String
     
     init(title: String) {
@@ -20,9 +20,7 @@ final class AccountsSectionHeaderPresenter: UITableViewHeaderFooterPresentable {
     func configure(view: AccountsSectionHeader, for section: Int) {
         view.titleLabel.text = title
     }
-}
-
-extension AccountsSectionHeaderPresenter: UITableViewHeaderFooterNibRegistrable {
+    
     static func == (lhs: AccountsSectionHeaderPresenter, rhs: AccountsSectionHeaderPresenter) -> Bool {
         if lhs.viewReuseIdentifier != rhs.viewReuseIdentifier { return false }
         if lhs.title != rhs.title { return false }

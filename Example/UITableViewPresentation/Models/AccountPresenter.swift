@@ -33,8 +33,6 @@ final class AccountPresenter: UITableViewPresentable {
     }
 }
 
-extension AccountPresenter: UITableViewNibRegistrable {}
-
 extension AccountPresenter: UITableViewSwipableRow {
     func leadingSwipeActionsConfiguration() -> UISwipeActionsConfiguration? {
         return nil
