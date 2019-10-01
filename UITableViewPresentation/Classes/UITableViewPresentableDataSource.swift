@@ -48,6 +48,8 @@ public final class UITableViewPresentableDataSource: NSObject {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedSectionHeaderHeight = 44
         tableView.sectionHeaderHeight = UITableView.automaticDimension
+        tableView.estimatedSectionFooterHeight = 0
+        tableView.sectionFooterHeight = UITableView.automaticDimension
         
         setTableViewModel(to: tableViewModel, animated: false)
     }
