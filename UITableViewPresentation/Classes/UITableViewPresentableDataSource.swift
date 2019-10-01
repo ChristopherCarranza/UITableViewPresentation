@@ -49,7 +49,7 @@ public final class UITableViewPresentableDataSource: NSObject {
         tableView.estimatedSectionHeaderHeight = 44
         tableView.sectionHeaderHeight = UITableView.automaticDimension
         
-        setTableViewModel(to: tableViewModel, animated: true)
+        setTableViewModel(to: tableViewModel, animated: false)
     }
     
     /// Sets the new model and reloads the table view. If animated a diff occures between the
