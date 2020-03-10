@@ -52,7 +52,11 @@ final class ModelHelper {
             .withHeader(.title("Music Accounts"))
             .addRows([
                 AccountPresenter(account: Account(id: 98765, isActive: false, name: "Apple Music"), actionDelegate: delegate),
-                AccountPresenter(account: Account(id: 87654, isActive: true, name: "Spotify"), actionDelegate: delegate)
+                AccountPresenter(account: Account(id: 87654, isActive: true, name: "Spotify"), actionDelegate: delegate),
+                AccountPresenter(account: Account(id: 87254, isActive: true, name: "Tidal"), actionDelegate: delegate),
+                AccountPresenter(account: Account(id: 87554, isActive: true, name: "Amazon Music"), actionDelegate: delegate),
+                AccountPresenter(account: Account(id: 81554, isActive: true, name: "Youtube Music"), actionDelegate: delegate),
+                AccountPresenter(account: Account(id: 81551, isActive: true, name: "Pandora"), actionDelegate: delegate)
             ])
         
         let sectionThree = UITableViewSectionBuilder()
@@ -60,7 +64,9 @@ final class ModelHelper {
             .withHeader(.title("Git Accounts"))
             .addRows([
                 AccountPresenter(account: Account(id: 192837, isActive: true, name: "Github"), actionDelegate: delegate),
-                AccountPresenter(account: Account(id: 564912, isActive: true, name: "Bitbucket"), actionDelegate: delegate)
+                AccountPresenter(account: Account(id: 564912, isActive: true, name: "Bitbucket"), actionDelegate: delegate),
+                AccountPresenter(account: Account(id: 192827, isActive: true, name: "Gitlab"), actionDelegate: delegate),
+                AccountPresenter(account: Account(id: 564942, isActive: true, name: "My Favorite Git Service"), actionDelegate: delegate)
             ])
         
         return [

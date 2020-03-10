@@ -44,6 +44,7 @@ public final class UITableViewPresentableDataSource: NSObject {
         
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.prefetchDataSource = self
         tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedSectionHeaderHeight = 44
