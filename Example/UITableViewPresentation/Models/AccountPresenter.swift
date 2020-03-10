@@ -46,6 +46,11 @@ extension AccountPresenter: UITableViewSwipableRow {
             })
         ])
     }
-    
-    
+}
+
+
+extension AccountPresenter: UITableViewPrefetchableRow {
+    func prefetch() {
+        print("Prefetch started for \(account.name)")
+    }
 }
