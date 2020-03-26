@@ -9,19 +9,23 @@
 import UIKit
 
 public struct ZeroConfigurationPresenter: UITableViewPresentable {
+    public let id: AnyHashable
     public let cellReuseIdentifier: String
+    private let _nib: UINib?
     
-    public init(cellReuseIdentifier: String) {
+    public init(id: AnyHashable, cellReuseIdentifier: String, nib: UINib? = nil) {
+        self.id = id
         self.cellReuseIdentifier = cellReuseIdentifier
+        self._nib = nib
     }
     
     public func configure(cell: UITableViewCell, at indexPath: IndexPath) {}
     
+    public var nib: UINib {
+        return _nib ?? UINib(nibName: cellReuseIdentifier, bundle: nil)
+    }
+    
     public static func == (lhs: ZeroConfigurationPresenter, rhs: ZeroConfigurationPresenter) -> Bool {
-        guard lhs.cellReuseIdentifier != rhs.cellReuseIdentifier else { return false }
-        
-        return true
+        return lhs.id == rhs.id
     }
 }
-
-extension ZeroConfigurationPresenter: UITableViewNibRegistrable {}
