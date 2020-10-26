@@ -30,6 +30,7 @@ final class ModelHelper {
                 AccountPresenter(account: Account(id: 76543, isActive: true, name: "SoundCloud"), actionDelegate: delegate),
                 AccountPresenter(account: Account(id: 65432, isActive: true, name: "Pandora"), actionDelegate: delegate)
             ])
+            .withFooter(.blank)
         
         return [
             sectionOne.build(),

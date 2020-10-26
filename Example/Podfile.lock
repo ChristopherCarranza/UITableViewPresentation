@@ -1,13 +1,13 @@
 PODS:
   - Dwifft (0.9)
-  - UITableViewPresentation (1.2.0):
+  - UITableViewPresentation (3.0.0):
     - Dwifft (= 0.9.0)
 
 DEPENDENCIES:
   - UITableViewPresentation (from `../`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - Dwifft
 
 EXTERNAL SOURCES:
@@ -16,8 +16,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Dwifft: 42912068ed2a8146077d1a1404df18625bd086e1
-  UITableViewPresentation: 64214562ad17e92fe127f7fa71ff80da4a13388e
+  UITableViewPresentation: 183579b6a7aca0e8490d0e9d60408876018552d5
 
 PODFILE CHECKSUM: 1c21603efb7d64df28b9b53af88b81abaf07ad17
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.10.0
