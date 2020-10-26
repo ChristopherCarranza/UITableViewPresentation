@@ -15,7 +15,7 @@ import UIKit
 @available(iOS, deprecated: 10.0, obsoleted: 11.0, message: "Use UITableViewSwipableRow instead")
 public protocol UITableViewEditableRow {
     var isEditable: Bool { get }
-    func editActions() -> [UITableViewRowAction]?
+    func editActions(forIndexPath indexPath: IndexPath) -> [UITableViewRowAction]?
 }
 
 extension UITableViewPresentableDataSource {
@@ -23,6 +23,6 @@ extension UITableViewPresentableDataSource {
     public func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         guard let row = tableViewModel[indexPath].base as? UITableViewEditableRow else { return nil }
         
-        return row.editActions()
+        return row.editActions(forIndexPath: indexPath)
     }
 }

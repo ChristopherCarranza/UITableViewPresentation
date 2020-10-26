@@ -34,11 +34,11 @@ final class AccountPresenter: UITableViewPresentable {
 }
 
 extension AccountPresenter: UITableViewSwipableRow {
-    func leadingSwipeActionsConfiguration() -> UISwipeActionsConfiguration? {
+    func leadingSwipeActionsConfiguration(forIndexPath indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         return nil
     }
     
-    func trailingSwipeActionsConfiguration() -> UISwipeActionsConfiguration? {
+    func trailingSwipeActionsConfiguration(forIndexPath indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         return UISwipeActionsConfiguration(actions: [
             UIContextualAction(style: .normal, title: "Do Something", handler: { (_, _, completed) in
                 self.actionDelegate.takeAction()
@@ -50,7 +50,7 @@ extension AccountPresenter: UITableViewSwipableRow {
 
 
 extension AccountPresenter: UITableViewPrefetchableRow {
-    func prefetch() {
+    func prefetch(atIndexPath indexPath: IndexPath) {
         print("Prefetch started for \(account.name)")
     }
 }

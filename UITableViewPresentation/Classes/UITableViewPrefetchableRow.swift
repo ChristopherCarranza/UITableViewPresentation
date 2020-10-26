@@ -12,7 +12,7 @@ import Foundation
 /// start prefetching data.
 public protocol UITableViewPrefetchableRow {
     /// Begin prefetching data
-    func prefetch()
+    func prefetch(atIndexPath indexPath: IndexPath)
 }
 
 extension UITableViewPresentableDataSource: UITableViewDataSourcePrefetching {
@@ -20,7 +20,7 @@ extension UITableViewPresentableDataSource: UITableViewDataSourcePrefetching {
         indexPaths.forEach { indexPath in
             guard let row = tableViewModel[indexPath].base as? UITableViewPrefetchableRow else { return }
             
-            row.prefetch()
+            row.prefetch(atIndexPath: indexPath)
         }
     }
 }

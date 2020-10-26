@@ -13,8 +13,8 @@ import UIKit
 /// `UISwipeActionsConfiguration`s for leading and trailing swipe actions.
 @available(iOS 11.0, *)
 public protocol UITableViewSwipableRow {
-    func leadingSwipeActionsConfiguration() -> UISwipeActionsConfiguration?
-    func trailingSwipeActionsConfiguration() -> UISwipeActionsConfiguration?
+    func leadingSwipeActionsConfiguration(forIndexPath indexPath: IndexPath) -> UISwipeActionsConfiguration?
+    func trailingSwipeActionsConfiguration(forIndexPath indexPath: IndexPath) -> UISwipeActionsConfiguration?
 }
 
 @available(iOS 11.0, *)
@@ -22,12 +22,12 @@ extension UITableViewPresentableDataSource {
     public func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard let row = tableViewModel[indexPath].base as? UITableViewSwipableRow else { return UISwipeActionsConfiguration() }
         
-        return row.leadingSwipeActionsConfiguration()
+        return row.leadingSwipeActionsConfiguration(forIndexPath: indexPath)
     }
     
     public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard let row = tableViewModel[indexPath].base as? UITableViewSwipableRow else { return UISwipeActionsConfiguration() }
         
-        return row.trailingSwipeActionsConfiguration()
+        return row.trailingSwipeActionsConfiguration(forIndexPath: indexPath)
     }
 }
