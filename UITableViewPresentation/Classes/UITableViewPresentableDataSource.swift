@@ -65,6 +65,7 @@ public final class UITableViewPresentableDataSource: NSObject {
     ///   - animated: If `true` model changes are animated.
     public func setTableViewModel(to newModel: UITableViewModel, animated: Bool = false, completion: (() -> Void)? = nil) {
         guard newModel != _tableViewModel else {
+            tableView.reloadData()
             completion?()
             return
         }
@@ -98,25 +99,33 @@ public final class UITableViewPresentableDataSource: NSObject {
             return
         }
         
-        let performUpdates = {
-            var deleteRows: [IndexPath] = []
-            var insertRows: [IndexPath] = []
-            var deleteSections: IndexSet = []
-            var insertSections: IndexSet = []
-            
-            for result in diff {
-                switch result {
-                case let .delete(section, row, _): deleteRows.append(IndexPath(row: row, section: section))
-                case let .insert(section, row, _): insertRows.append(IndexPath(row: row, section: section))
-                case let .sectionDelete(section, _): deleteSections.insert(section)
-                case let .sectionInsert(section, _): insertSections.insert(section)
-                }
+        var deleteRows: [IndexPath] = []
+        var insertRows: [IndexPath] = []
+        var deleteSections: IndexSet = []
+        var insertSections: IndexSet = []
+
+        for result in diff {
+            switch result {
+            case let .delete(section, row, _): deleteRows.append(IndexPath(row: row, section: section))
+            case let .insert(section, row, _): insertRows.append(IndexPath(row: row, section: section))
+            case let .sectionDelete(section, _): deleteSections.insert(section)
+            case let .sectionInsert(section, _): insertSections.insert(section)
             }
-            
+        }
+
+        let reloadRows = tableView.indexPathsForVisibleRows?.filter {
+            !insertRows.contains($0)
+                && !deleteRows.contains($0)
+                && !deleteSections.contains($0.section)
+                && !insertSections.contains($0.section)
+        } ?? []
+
+        let performUpdates = {
             tableView.deleteRows(at: deleteRows, with: self.deletionAnimation)
             tableView.insertRows(at: insertRows, with: self.insertionAnimation)
             tableView.deleteSections(deleteSections, with: self.deletionAnimation)
             tableView.insertSections(insertSections, with: self.insertionAnimation)
+            tableView.reloadRows(at: reloadRows, with: .none)
             self._tableViewModel = newState
         }
         
