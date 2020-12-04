@@ -10,7 +10,7 @@ import Foundation
 
 /// A model that emulates a tableView data structure of sections with rows.
 public struct UITableViewModel {
-    fileprivate let sections: [UITableViewSection]
+    public var sections: [UITableViewSection]
     
     public init(sections: [UITableViewSection]) {
         self.sections = sections
@@ -18,13 +18,19 @@ public struct UITableViewModel {
     
     public subscript(index: Int) -> UITableViewSection {
         get {
-            return sections[index]
+            sections[index]
+        }
+        set(newValue) {
+            sections[index] = newValue
         }
     }
     
     public subscript(indexPath: IndexPath) -> AnyUITableViewPresentable {
         get {
-            return sections[indexPath.section][indexPath.row]
+            sections[indexPath.section][indexPath.row]
+        }
+        set(newValue) {
+            sections[indexPath.section][indexPath.row] = newValue
         }
     }
 }
@@ -58,5 +64,3 @@ extension UITableViewModel: Equatable {
         return true
     }
 }
-
-

@@ -1,7 +1,9 @@
 PODS:
   - Dwifft (0.9)
-  - UITableViewPresentation (3.0.0):
+  - TaskQueue (1.1.1)
+  - UITableViewPresentation (4.0.0):
     - Dwifft (= 0.9.0)
+    - TaskQueue
 
 DEPENDENCIES:
   - UITableViewPresentation (from `../`)
@@ -9,6 +11,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Dwifft
+    - TaskQueue
 
 EXTERNAL SOURCES:
   UITableViewPresentation:
@@ -16,7 +19,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Dwifft: 42912068ed2a8146077d1a1404df18625bd086e1
-  UITableViewPresentation: 183579b6a7aca0e8490d0e9d60408876018552d5
+  TaskQueue: 53a3cdaf817d9ce3cd50837ff6610aeb7b968997
+  UITableViewPresentation: 41eb1d014164cca82ffbcf00e392451d9067a9d1
 
 PODFILE CHECKSUM: 1c21603efb7d64df28b9b53af88b81abaf07ad17
 

@@ -9,8 +9,10 @@
 import UIKit
 
 /// Provides the ability to dequeue and configure a UITableViewCell for a UITableView.
-public protocol UITableViewPresentable: Equatable, UITableViewNibRegistrable {
+public protocol UITableViewPresentable: Hashable, UITableViewNibRegistrable {
     associatedtype TableViewCell: UITableViewCell
+    
+    var id: AnyHashable { get }
     
     /// Identifier that should match the cells cellReuseIdentifier property.
     ///
@@ -23,6 +25,14 @@ public protocol UITableViewPresentable: Equatable, UITableViewNibRegistrable {
 public extension UITableViewPresentable {
     var cellReuseIdentifier: String {
         return String(describing: TableViewCell.self)
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.id == rhs.id
     }
 }
 
@@ -45,6 +55,7 @@ public extension UITableView {
 /// Used internally to `erase` the type used with UITableViewPresentable
 internal protocol _AnyUITableViewPresentableBox {
     var _base: Any { get }
+    var _id: AnyHashable { get }
     var _cellReuseIdentifier: String { get }
     func _configure(cell: UITableViewCell, at indexPath: IndexPath)
     func _unbox<T: UITableViewPresentable>() -> T?
@@ -52,6 +63,7 @@ internal protocol _AnyUITableViewPresentableBox {
 }
 
 internal struct _ConcreteUITableViewPresentableBox<Base: UITableViewPresentable>: _AnyUITableViewPresentableBox {
+    
     private var _baseUITableViewPresentable: Base
     
     public init(_ base: Base) {
@@ -72,6 +84,10 @@ internal struct _ConcreteUITableViewPresentableBox<Base: UITableViewPresentable>
     
     public var _base: Any {
         return _baseUITableViewPresentable
+    }
+    
+    public var _id: AnyHashable {
+        return _baseUITableViewPresentable.id
     }
     
     public var _cellReuseIdentifier: String {
@@ -101,6 +117,10 @@ public struct AnyUITableViewPresentable {
 }
 
 extension AnyUITableViewPresentable: UITableViewPresentable {
+    public var id: AnyHashable {
+        return _box._id
+    }
+    
     public var cellReuseIdentifier: String {
         return _box._cellReuseIdentifier
     }
