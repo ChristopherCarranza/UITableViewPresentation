@@ -64,11 +64,10 @@ public final class UITableViewPresentableDataSource: NSObject {
         guard newModel != tableViewModel else {
             taskQueue.tasks += {
                 self.tableView.reloadData()
-            }
-            
-            taskQueue.run {
                 completion?()
             }
+            
+            taskQueue.run()
             return
         }
         
@@ -79,11 +78,10 @@ public final class UITableViewPresentableDataSource: NSObject {
             taskQueue.tasks += {
                 self.tableViewModel = newModel
                 self.tableView.reloadData()
-            }
-            
-            taskQueue.run {
                 completion?()
             }
+            
+            taskQueue.run()
             return
         }
         
