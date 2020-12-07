@@ -14,5 +14,5 @@ A presentation library for coordinating changes between your models and your tab
   s.swift_version = '5.0'
   s.source_files = 'UITableViewPresentation/Classes/**/*'
   s.dependency 'Dwifft', '0.9.0'
-  s.dependency 'TaskQueue'
+  s.dependency 'TaskQueue', '1.1.1'
 end
