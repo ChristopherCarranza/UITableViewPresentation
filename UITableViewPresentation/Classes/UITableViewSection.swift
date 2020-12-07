@@ -24,12 +24,16 @@ public struct UITableViewSection {
         case presentable(AnyUITableViewHeaderFooterPresentable)
     }
     
-    public let id: AnyHashable
-    public let header: HeaderFooter
-    public let footer: HeaderFooter
-    public let rows: [AnyUITableViewPresentable]
+    public var id: AnyHashable
+    public var header: HeaderFooter
+    public var footer: HeaderFooter
+    public var rows: [AnyUITableViewPresentable]
     
-    public init<P: UITableViewPresentable>(id: AnyHashable, rows: [P], header: HeaderFooter = .none, footer: HeaderFooter = .none) {
+    public init() {
+        self.init(rows: [AnyUITableViewPresentable]())
+    }
+    
+    public init<P: UITableViewPresentable>(id: AnyHashable = UUID(), rows: [P], header: HeaderFooter = .none, footer: HeaderFooter = .none) {
         self.id = id
         self.header = header
         self.footer = footer
@@ -44,7 +48,10 @@ public struct UITableViewSection {
     
     public subscript(index: Int) -> AnyUITableViewPresentable {
         get {
-            return rows[index]
+            rows[index]
+        }
+        set(newValue) {
+            rows[index] = newValue
         }
     }
 }
@@ -74,7 +81,12 @@ extension UITableViewSection.HeaderFooter: Equatable {
     }
 }
 
-extension UITableViewSection: Equatable {
+extension UITableViewSection: Hashable {
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
     public static func == (lhs: UITableViewSection, rhs: UITableViewSection) -> Bool {
         if lhs.id != rhs.id { return false }
         if lhs.header != rhs.header { return false }
@@ -84,5 +96,3 @@ extension UITableViewSection: Equatable {
         return true
     }
 }
-
-

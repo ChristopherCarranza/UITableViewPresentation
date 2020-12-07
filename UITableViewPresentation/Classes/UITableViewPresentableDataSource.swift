@@ -8,6 +8,7 @@
 
 import UIKit
 import Dwifft
+import TaskQueue
 
 public protocol UITableViewPresentableDataSourceDelegate: class {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, presentable: AnyUITableViewPresentable)
@@ -26,15 +27,11 @@ public final class UITableViewPresentableDataSource: NSObject {
     fileprivate weak var tableView: UITableView!
     fileprivate let tableViewRegistrar: UITableViewRegistrar
     
-    private var _tableViewModel: UITableViewModel = []
-    
-    /// The `UITableViewModel` used in the datasource. Setting this property will cause the model to change without animation.
-    public var tableViewModel: UITableViewModel {
-        get { return _tableViewModel }
-        set { setTableViewModel(to: newValue) }
-    }
+    public private(set) var tableViewModel: UITableViewModel = []
     
     public weak var delegate: UITableViewPresentableDataSourceDelegate?
+    
+    private let taskQueue = TaskQueue()
     
     public init(tableView: UITableView, delegate: UITableViewPresentableDataSourceDelegate? = nil, tableViewModel: UITableViewModel = []) {
         self.tableView = tableView
@@ -64,26 +61,44 @@ public final class UITableViewPresentableDataSource: NSObject {
     ///   - model: a `UITableViewModel` object
     ///   - animated: If `true` model changes are animated.
     public func setTableViewModel(to newModel: UITableViewModel, animated: Bool = false, completion: (() -> Void)? = nil) {
-        guard newModel != _tableViewModel else {
-            tableView.reloadData()
-            completion?()
+        guard newModel != tableViewModel else {
+            taskQueue.tasks += {
+                self.tableView.reloadData()
+                completion?()
+            }
+            
+            taskQueue.run()
             return
         }
         
         tableViewRegistrar.register(tableViewModel: newModel)
         
         guard animated else {
-            _tableViewModel = newModel
-            tableView.reloadData()
-            completion?()
+            
+            taskQueue.tasks += {
+                self.tableViewModel = newModel
+                self.tableView.reloadData()
+                completion?()
+            }
+            
+            taskQueue.run()
             return
         }
         
-        let oldModel = _tableViewModel
-        let diff = Dwifft.diff(lhs: oldModel, rhs: newModel)
-        if !diff.isEmpty {
-            processChanges(newState: newModel, diff: diff, completion: completion)
+        taskQueue.tasks += { result, next in
+            let oldModel = self.tableViewModel
+            let diff = Dwifft.diff(lhs: oldModel, rhs: newModel)
+            if !diff.isEmpty {
+                self.processChanges(newState: newModel, diff: diff, completion: {
+                    completion?()
+                    next(nil)
+                })
+            } else {
+                next(nil)
+            }
         }
+        
+        taskQueue.run()
     }
     
     /// You can change insertion/deletion animations like this! Fade works well.
@@ -113,22 +128,14 @@ public final class UITableViewPresentableDataSource: NSObject {
             }
         }
 
-        let reloadRows = tableView.indexPathsForVisibleRows?.filter {
-            !insertRows.contains($0)
-                && !deleteRows.contains($0)
-                && !deleteSections.contains($0.section)
-                && !insertSections.contains($0.section)
-        } ?? []
-
         let performUpdates = {
             tableView.deleteRows(at: deleteRows, with: self.deletionAnimation)
             tableView.insertRows(at: insertRows, with: self.insertionAnimation)
             tableView.deleteSections(deleteSections, with: self.deletionAnimation)
             tableView.insertSections(insertSections, with: self.insertionAnimation)
-            tableView.reloadRows(at: reloadRows, with: .none)
-            self._tableViewModel = newState
+            self.tableViewModel = newState
         }
-        
+
         if #available(iOS 11.0, *) {
             tableView.performBatchUpdates(performUpdates, completion: { _ in completion?() })
         } else {

@@ -10,6 +10,8 @@ import Foundation
 import UITableViewPresentation
 
 final class AccountPresenter: UITableViewPresentable {
+    let id: AnyHashable = UUID()
+    
     let account: Account
     let actionDelegate: ExampleActionDelegate
     

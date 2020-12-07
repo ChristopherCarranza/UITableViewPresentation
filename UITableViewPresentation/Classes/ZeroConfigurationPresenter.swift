@@ -9,11 +9,11 @@
 import UIKit
 
 public struct ZeroConfigurationPresenter: UITableViewPresentable {
-    public let id: AnyHashable
-    public let cellReuseIdentifier: String
-    private let _nib: UINib?
+    public var id: AnyHashable
+    public var cellReuseIdentifier: String
+    private var _nib: UINib?
     
-    public init(id: AnyHashable, cellReuseIdentifier: String, nib: UINib? = nil) {
+    public init(id: AnyHashable = UUID(), cellReuseIdentifier: String, nib: UINib? = nil) {
         self.id = id
         self.cellReuseIdentifier = cellReuseIdentifier
         self._nib = nib
